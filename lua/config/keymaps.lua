@@ -12,3 +12,9 @@ vim.keymap.set("n", "<leader>ii", function()
   vim.fn.jobstart(cmd, { detach = true })
   print("Opening in IntelliJ...")
 end, { desc = "Open current file in IntelliJ" })
+
+
+vim.keymap.set('n', '<leader>fx', function()
+  local path = vim.fn.expand('%:p')
+  vim.cmd('silent !open -R ' .. vim.fn.shellescape(path))
+end, { desc = "Reveal current file in Finder" })
