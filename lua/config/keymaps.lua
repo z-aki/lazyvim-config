@@ -18,3 +18,9 @@ vim.keymap.set('n', '<leader>fx', function()
   local path = vim.fn.expand('%:p')
   vim.cmd('silent !open -R ' .. vim.fn.shellescape(path))
 end, { desc = "Reveal current file in Finder" })
+
+vim.keymap.set('n', '<leader>gx', function()
+  vim.fn.jobstart({ "smerge", "--project", vim.fn.expand("%:p:h") }, { detach = true })
+end, {desc = "Open repo in sublime merge"})
+
+vim.keymap.set('n', '<leader><Tab><Tab>', '<Cmd>tabprevious<CR>', {desc = 'Previous Tab'})
