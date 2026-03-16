@@ -1,6 +1,6 @@
 return {
   "NeogitOrg/neogit",
-  lazy = true,
+  lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim", -- required
 
@@ -24,6 +24,5 @@ return {
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
-    { "<leader>gP", '<cmd>DiffviewOpen origin/master...HEAD --imply-local<cr>', desc = "Show Diffview UI" },
   },
 }
