@@ -27,3 +27,5 @@ vim.keymap.set('n', '<leader><Tab><Tab>', '<Cmd>tabprevious<CR>', {desc = 'Previ
 
 vim.keymap.set( 'n', "<leader>gP", '<cmd>DiffviewOpen origin/master...HEAD --imply-local<cr>', {desc = "Diffview PR review"})
 
+vim.keymap.set('n', "]]", "]h", { remap = true })
+vim.keymap.set('n', "[[", "[h", { remap = true })
