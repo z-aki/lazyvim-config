@@ -9,6 +9,16 @@ return {
             { "[[", false }
           },
         },
+        jdtls = {
+          settings = {
+            java = {
+              completion = {
+                maxResults = 0
+              }
+            }
+          }
+        }
+        ,
         lua_ls = {
           settings = {
             Lua = {

@@ -25,7 +25,7 @@ end, {desc = "Open repo in sublime merge"})
 
 vim.keymap.set('n', '<leader><Tab><Tab>', '<Cmd>tabprevious<CR>', {desc = 'Previous Tab'})
 
-vim.keymap.set( 'n', "<leader>gP", '<cmd>DiffviewOpen origin/master...HEAD --imply-local<cr>', {desc = "Diffview PR review"})
+vim.keymap.set('n', "<leader>gP", '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>', {desc = "Diffview PR review"})
 
 vim.keymap.set('n', "]]", "]h", { remap = true })
 vim.keymap.set('n', "[[", "[h", { remap = true })
