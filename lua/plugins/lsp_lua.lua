@@ -10,13 +10,7 @@ return {
           },
         },
         jdtls = {
-          settings = {
-            java = {
-              completion = {
-                maxResults = 0
-              }
-            }
-          }
+
         }
         ,
         sourcekit = {
@@ -32,6 +26,11 @@ return {
           },
         },
       },
+      setup = {
+        jdtls = function()
+          return true
+        end
+      }
     },
   },
 }
