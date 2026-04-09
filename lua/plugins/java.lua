@@ -1,8 +1,24 @@
 return {
   {
     "mfussenegger/nvim-jdtls",
-    opts = {
-      settings ={
+    opts = function(_, opts)
+      -- Add custom JVM args to the cmd
+      local jvm_args = {
+        "-Xms2g",
+        "-Xmx40g",
+        "-XX:+UseParallelGC",
+        "-XX:GCTimeRatio=4",
+        "-XX:AdaptiveSizePolicyWeight=90",
+        "-Dsun.zip.disableMemoryMapping=true",
+        "-Xlog:disable"
+      }
+
+      for _, arg in ipairs(jvm_args) do
+        table.insert(opts.cmd, string.format("--jvm-arg=%s", arg))
+      end
+
+      -- Add custom settings
+      opts.settings = vim.tbl_deep_extend("force", opts.settings or {}, {
         java = {
           configuration = {
             runtimes = {
@@ -27,8 +43,10 @@ return {
             maxResults = 0
           }
         }
-      }
-    }
+      })
+
+      return opts
+    end
   },
   {
     "mfussenegger/nvim-dap",
