@@ -6,7 +6,8 @@ return {
         ['*'] = {
           keys = {
             { "]]", false},
-            { "[[", false }
+            { "[[", false },
+            { "gd", false }
           },
         },
         jdtls = {
