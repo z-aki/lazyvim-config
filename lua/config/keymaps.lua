@@ -30,31 +30,43 @@ vim.keymap.set('n', "<leader>gP", '<cmd>DiffviewOpen origin/HEAD...HEAD --imply-
 vim.keymap.set('n', "]]", "]h", { remap = true })
 vim.keymap.set('n', "[[", "[h", { remap = true })
 
--- Fast definition: try LSP first, fallback to grep
-local function fast_definition()
-  local fzf = require("fzf-lua")
-  local search_term = vim.fn.expand("<cword>")
-  local timeout = 5
-  local has_results = false
+-- Generic fast LSP helper: try LSP first, fallback to grep
+local function fast_lsp(lsp_method, fzf_lsp_func, fallback_func)
+  return function()
+    local fzf = require("fzf-lua")
+    local search_term = vim.fn.expand("<cword>")
+    -- ms
+    local timeout = 1000
 
-  -- Get jdtls or any active client for current buffer
-  local clients = vim.lsp.get_clients({ name = 'jdtls', bufnr = 0 })
-  if #clients == 0 then clients = vim.lsp.get_clients({ bufnr = 0 }) end
-  local client = clients[1]
+    -- Get jdtls or any active client for current buffer
+    local clients = vim.lsp.get_clients({ name = 'jdtls', bufnr = 0 })
+    if #clients == 0 then clients = vim.lsp.get_clients({ bufnr = 0 }) end
+    local client = clients[1]
 
-  -- If LSP exists and supports the method, attempt the sync request
-  if client and client.supports_method("textDocument/definition", 0) then
-    local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
-    local success, result = pcall(vim.lsp.buf_request_sync, 0, "textDocument/definition", params, timeout)
-    has_results = success and result and not vim.tbl_isempty(result)
-  end
+    -- If LSP exists and supports the method, attempt the sync request
+    if client and client.supports_method(lsp_method, 0) then
+      local params = vim.lsp.util.make_position_params(nil, client.offset_encoding)
+      if lsp_method == "textDocument/references" then
+        ---@diagnostic disable-next-line: inject-field
+        params.context = { includeDeclaration = true }
+      end
+      local success, result = pcall(vim.lsp.buf_request_sync, 0, lsp_method, params, timeout)
+      local has_results = success and result and not vim.tbl_isempty(result)
 
-  -- Single point of decision for the UI call
-  if has_results then
-    fzf.lsp_definitions({ query = search_term })
-  else
-    fzf.live_grep({ query = search_term })
+      -- Single point of decision for the UI call
+      if has_results then
+        fzf_lsp_func({ query = search_term })
+      else
+        (fallback_func or fzf.live_grep)({ query = search_term })
+      end
+    else
+      -- No LSP support, go straight to grep
+      (fallback_func or fzf.live_grep)({ query = search_term })
+    end
   end
 end
 
-vim.keymap.set('n', 'gd', fast_definition, { desc = "Fast Goto Definition (FzfLua)" })
+vim.keymap.set('n', 'gd', fast_lsp("textDocument/definition", require("fzf-lua").lsp_definitions), { desc = "Fast Goto Definition (FzfLua)" })
+vim.keymap.set('n', 'gr', fast_lsp("textDocument/references", require("fzf-lua").lsp_references), { desc = "Fast Goto References (FzfLua)" })
+vim.keymap.set('n', 'gI', fast_lsp("textDocument/implementation", require("fzf-lua").lsp_implementations), { desc = "Fast Goto Implementation (FzfLua)" })
+

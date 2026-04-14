@@ -7,7 +7,10 @@ return {
           keys = {
             { "]]", false},
             { "[[", false },
-            { "gd", false }
+            { "gd", false },
+            { "gr", false },
+            { "gI", false },
+            { "K", false }
           },
         },
         jdtls = {
