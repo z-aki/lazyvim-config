@@ -10,7 +10,7 @@ return {
         "-XX:GCTimeRatio=4",
         "-XX:AdaptiveSizePolicyWeight=90",
         "-Dsun.zip.disableMemoryMapping=true",
-        "-Xlog:disable"
+        "-Xlog:disable",
       }
 
       for _, arg in ipairs(jvm_args) do
@@ -25,32 +25,31 @@ return {
               {
                 name = "JavaSE-17",
                 path = vim.fn.expand("~/.sdkman/candidates/java/17.0.18-amzn"),
-                default = false
+                default = false,
               },
               {
                 name = "JavaSE-21",
                 path = vim.fn.expand("~/.sdkman/candidates/java/21.0.10-amzn"),
-                default = true
+                default = true,
               },
               {
                 name = "JaveSE-1.8",
                 path = vim.fn.expand("~/.sdkman/candidates/java/8.0.472-amzn"),
-                default = false
-              }
+                default = false,
+              },
             },
           },
           completion = {
-            maxResults = 0
-          }
-        }
+            maxResults = 0,
+          },
+        },
       })
 
       return opts
-    end
+    end,
   },
   {
     "mfussenegger/nvim-dap",
-    config = function()
-    end
-  }
+    config = function() end,
+  },
 }

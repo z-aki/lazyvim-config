@@ -1,4 +1,3 @@
-
 return {
   {
     "rcasia/neotest-java",
@@ -22,4 +21,3 @@ return {
     },
   },
 }
-

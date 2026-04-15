@@ -8,5 +8,5 @@ return {
     -- does not restore terminals, does not attach LSP.
     "folke/persistence.nvim",
     enabled = false,
-  }
+  },
 }

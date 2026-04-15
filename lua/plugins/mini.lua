@@ -1,7 +1,6 @@
 return {
   {
     "nvim-mini/mini.surround",
-    lazy = false
+    lazy = false,
   },
-
 }

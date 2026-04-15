@@ -3,23 +3,18 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ['*'] = {
+        ["*"] = {
           keys = {
-            { "]]", false},
+            { "]]", false },
             { "[[", false },
             { "gd", false },
             { "gr", false },
             { "gI", false },
-            { "K", false }
+            { "K", false },
           },
         },
-        jdtls = {
-
-        }
-        ,
-        sourcekit = {
-
-        },
+        jdtls = {},
+        sourcekit = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -33,8 +28,8 @@ return {
       setup = {
         jdtls = function()
           return true
-        end
-      }
+        end,
+      },
     },
   },
 }

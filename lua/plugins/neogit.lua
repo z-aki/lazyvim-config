@@ -20,7 +20,7 @@ return {
       diffview = true,
       fzf_lua = true,
     },
-    kind = "auto"
+    kind = "auto",
   },
   keys = {
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },

@@ -1,7 +1,7 @@
 return {
   "wojciech-kulik/xcodebuild.nvim",
   dependencies = {
-    -- Uncomment a picker that you want to use, snacks.nvim might be additionally 
+    -- Uncomment a picker that you want to use, snacks.nvim might be additionally
     -- useful to show previews and failing snapshots.
 
     -- You must select at least one:
@@ -16,7 +16,7 @@ return {
   },
   config = function()
     require("xcodebuild").setup({
-        -- put some options here or leave it empty to use default settings
+      -- put some options here or leave it empty to use default settings
     })
   end,
 }
