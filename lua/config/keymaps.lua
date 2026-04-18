@@ -57,9 +57,18 @@ local function fast_lsp(lsp_method, fzf_lsp_func, fallback_func)
         params.context = { includeDeclaration = true }
       end
       local success, result = pcall(vim.lsp.buf_request_sync, 0, lsp_method, params, timeout)
-      local has_results = success and result and not vim.tbl_isempty(result)
 
-      -- Single point of decision for the UI call
+      -- Check if we got actual LSP results
+      local has_results = false
+      if success and result then
+        for _, response in pairs(result) do
+          if response.result and #response.result > 0 then
+            has_results = true
+            break
+          end
+        end
+      end
+
       if has_results then
         fzf_lsp_func({ query = search_term })
       else
@@ -90,3 +99,19 @@ vim.keymap.set(
   fast_lsp("textDocument/implementation", require("fzf-lua").lsp_implementations),
   { desc = "Fast Goto Implementation (FzfLua)" }
 )
+
+
+
+-- Copy relative path
+vim.keymap.set("n", "<leader>fy", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied relative path: " .. path)
+end, { desc = "Copy Relative Path" })
+
+-- Copy absolute path
+vim.keymap.set("n", "<leader>fY", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied absolute path: " .. path)
+end, { desc = "Copy Absolute Path" })

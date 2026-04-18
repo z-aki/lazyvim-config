@@ -1,8 +1,11 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    opts = {
-      copilot_node_command = vim.fn.expand("~/.nvm/versions/node/v2*/bin/node"),
-    },
+    opts = function()
+      local node_path = vim.fn.glob("~/.nvm/versions/node/v2*/bin/node", true, true)
+      return {
+        copilot_node_command = node_path[#node_path],
+      }
+    end,
   },
 }
