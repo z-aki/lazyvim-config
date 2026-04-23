@@ -20,6 +20,7 @@ return {
       -- Add custom settings
       opts.settings = vim.tbl_deep_extend("force", opts.settings or {}, {
         java = {
+          maxConcurrentBuilds = 8,
           configuration = {
             runtimes = {
               {
