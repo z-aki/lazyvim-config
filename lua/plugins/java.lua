@@ -41,7 +41,7 @@ return {
             },
           },
           completion = {
-            maxResults = 0,
+            maxResults = 10,
           },
         },
       })

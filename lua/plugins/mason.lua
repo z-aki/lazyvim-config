@@ -17,6 +17,7 @@ return {
         "stylua",
         "taplo",
         "yaml-language-server",
+        "lemminx"
       },
     },
   },

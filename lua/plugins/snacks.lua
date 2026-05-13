@@ -18,6 +18,19 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
+    opts = {
+      files = {
+        fzf_opts = {
+          ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-files-history",
+        },
+        cwd_prompt = false,
+      },
+      grep = {
+        fzf_opts = {
+          ["--history"] = vim.fn.stdpath("data") .. "/fzf-lua-grep-history",
+        },
+      },
+    },
     keys = {
       { "<leader>fR", "<cmd>FzfLua oldfiles<cr>", desc = "Recent" },
       { "<leader>fr", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
