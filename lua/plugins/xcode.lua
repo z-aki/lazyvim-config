@@ -1,5 +1,6 @@
 return {
   "wojciech-kulik/xcodebuild.nvim",
+  lazy = true,
   dependencies = {
     -- Uncomment a picker that you want to use, snacks.nvim might be additionally
     -- useful to show previews and failing snapshots.
