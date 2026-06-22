@@ -9,4 +9,17 @@ return {
     "folke/persistence.nvim",
     enabled = false,
   },
+  {
+    "nvim-lua/plenary.nvim",
+    enabled = false,
+  },
+  {
+    "MagicDuck/grug-far.nvim",
+    enabled = false
+  },
+  {
+    "MunifTanjim/nui.nvim",
+    -- Noice needs it
+    enabled = true
+  }
 }

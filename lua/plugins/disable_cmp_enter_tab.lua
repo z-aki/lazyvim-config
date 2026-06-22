@@ -1,12 +1,24 @@
 return {
   {
     "saghen/blink.cmp",
-    opts = function(_, opts)
-      opts.keymap = {
+    opts = {
+      keymap = {
         preset = "super-tab",
         -- ["<Tab>"] = { "select_and_accept" },
         -- ["S-Tab"] = { "select_prev" },
-      }
-    end,
+      },
+      sources = {
+        -- add lazydev to your completion providers
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
+          },
+        },
+      },
+    },
   },
 }
