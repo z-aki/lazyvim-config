@@ -1,19 +1,84 @@
 return {
-  "folke/snacks.nvim",
-  keys = {
-    {
-      "<leader>fR",
-      function()
-        LazyVim.pick("oldfiles")
-      end,
-      desc = "Recent",
+  {
+    "folke/snacks.nvim",
+    opts = {
+      explorer = {
+        enabled = false,
+      },
+      input = {
+        enabled = false,
+      },
+      dashboard = {
+        enabled = true,
+        sections = {
+          {
+            title = "Branch",
+            cmd = "git branch --show-current 2>/dev/null",
+            height = 1,
+            section = "terminal",
+            padding = 1,
+            align = "left",
+            pane = 1,
+          },
+          {
+            title = "Recent Files",
+            section = "recent_files",
+            cwd = true,
+            limit = 8,
+            padding = 1,
+            align = "left",
+            pane = 1,
+          },
+          { section = "startup", pane = 1 },
+          {
+            title = "Git Status <leader>gs",
+            cmd = 'git status --short 2>/dev/null | awk \'{n=split($NF,a,"/"); print substr($0,1,3) (n>1?a[n-1]"/"a[n]:a[1])}\'',
+            height = 5,
+            section = "terminal",
+            padding = 0,
+            indent = 0,
+            align = "left",
+            pane = 2,
+          },
+          {
+            title = "PR Status <leader>gp",
+            cmd = "gh pr status 2>/dev/null",
+            height = 15,
+            section = "terminal",
+            padding = 1,
+            align = "left",
+            pane = 2,
+          },
+        },
+      },
     },
-    {
-      "<leader>fr",
-      function()
-        Snacks.picker.recent({ filter = { cwd = true } })
-      end,
-      desc = "Recent (cwd)",
+    keys = {
+      {
+        "<leader>fR",
+        function()
+          LazyVim.pick("oldfiles")
+        end,
+        desc = "Recent",
+      },
+      {
+        "<leader>fr",
+        function()
+          Snacks.picker.recent({ filter = { cwd = true } })
+        end,
+        desc = "Recent (cwd)",
+      },
+    },
+  },
+  {
+    "folke/noice.nvim",
+    enabled = true,
+    opts = {
+      cmdline = {
+        -- enabled = false,
+      },
+      messages = {
+        -- enabled = false
+      },
     },
   },
   {

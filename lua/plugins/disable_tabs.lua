@@ -11,7 +11,8 @@ return {
   },
   {
     "nvim-lua/plenary.nvim",
-    enabled = false,
+    -- octo needs it
+    enabled = true,
   },
   {
     "MagicDuck/grug-far.nvim",
