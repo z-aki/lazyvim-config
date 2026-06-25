@@ -33,7 +33,12 @@ vim.keymap.set(
 
 vim.keymap.set("n", "]]", "]h", { remap = true })
 vim.keymap.set("n", "[[", "[h", { remap = true })
---
+
+-- Prevent paragraph motions from saving to the jumplist
+vim.keymap.set('n', '}', '<cmd>keepjumps normal! }<CR>', { silent = true })
+vim.keymap.set('n', '{', '<cmd>keepjumps normal! {<CR>', { silent = true })
+
+
 -- -- Generic fast LSP helper: try LSP first, fallback to grep
 -- local function fast_lsp(lsp_method, fzf_lsp_func, fallback_func)
 --   return function()

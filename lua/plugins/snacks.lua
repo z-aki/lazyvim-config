@@ -10,6 +10,7 @@ return {
       },
       dashboard = {
         enabled = true,
+        width = 100,
         sections = {
           {
             title = "Branch",
@@ -43,6 +44,15 @@ return {
           {
             title = "PR Status <leader>gp",
             cmd = "gh pr status 2>/dev/null",
+            height = 15,
+            section = "terminal",
+            padding = 1,
+            align = "left",
+            pane = 2,
+          },
+          {
+            title = "Git log <leader>gc",
+            cmd = "git log --oneline 2>/dev/null",
             height = 15,
             section = "terminal",
             padding = 1,
