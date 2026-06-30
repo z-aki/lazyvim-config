@@ -4,3 +4,4 @@
 vim.g.autoformat = false
 vim.o.exrc = true
 -- vim.o.startofline = true
+vim.o.wrap = true

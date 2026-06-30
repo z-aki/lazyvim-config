@@ -1,0 +1,13 @@
+scrollback-limit = 10_000_000_000
+# keybind = alt+v=activate_key_table:vim
+keybind = ctrl+backslash=new_split:right
+keybind = ctrl+minus=new_split:down
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+macos-option-as-alt = true
+window-inherit-working-directory = false
+mouse-scroll-multiplier = 1.5
+split-divider-color = #FF0000
+

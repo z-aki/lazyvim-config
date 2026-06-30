@@ -38,6 +38,13 @@ vim.keymap.set("n", "[[", "[h", { remap = true })
 vim.keymap.set('n', '}', '<cmd>keepjumps normal! }<CR>', { silent = true })
 vim.keymap.set('n', '{', '<cmd>keepjumps normal! {<CR>', { silent = true })
 
+vim.keymap.set('n', '<C-S-\\>', '<cmd>vsplit<CR>', { desc = 'Vertical Split' })
+vim.keymap.set('n', '<C-S-->', '<cmd>split<CR>', { desc = 'Horizontal Split' })
+
+vim.keymap.set('n', '<C-S-h>', '<C-w>h', { desc = 'Go to Left Window' })
+vim.keymap.set('n', '<C-S-j>', '<C-w>j', { desc = 'Go to Lower Window' })
+vim.keymap.set('n', '<C-S-k>', '<C-w>k', { desc = 'Go to Upper Window' })
+vim.keymap.set('n', '<C-S-l>', '<C-w>l', { desc = 'Go to Right Window' })
 
 -- -- Generic fast LSP helper: try LSP first, fallback to grep
 -- local function fast_lsp(lsp_method, fzf_lsp_func, fallback_func)
